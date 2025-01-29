@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Price Compare",
+  "version": "1.0",
+  "description": "Compare prices across e-commerce websites",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "webRequest",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.amazon.com/*",
+    "*://*.walmart.com/*",
+    "*://*.bestbuy.com/*",
+    "*://*.target.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [{
+    "matches": [
+      "*://*.amazon.com/*",
+      "*://*.walmart.com/*",
+      "*://*.bestbuy.com/*",
+      "*://*.target.com/*"
+    ],
+    "js": ["content.js"]
+  }]
+}
